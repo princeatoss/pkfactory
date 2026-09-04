@@ -10,14 +10,14 @@ import {
   type ProjectListEntriesResult,
   type ProjectReadFileResult,
   ThreadId,
-} from "@t3tools/contracts";
-import { videoMimeType } from "@t3tools/shared/video";
+} from "@pkfactory/contracts";
+import { videoMimeType } from "@pkfactory/shared/video";
 import {
   isWorkspaceBrowserPreviewPath,
   isWorkspaceImagePreviewPath,
   mediaMimeTypeFromExtension,
-} from "@t3tools/shared/filePreview";
-import { mediaFileReference } from "@t3tools/client-runtime/media-reference";
+} from "@pkfactory/shared/filePreview";
+import { mediaFileReference } from "@pkfactory/client-runtime/media-reference";
 
 import { AndroidHeaderIconButton, AndroidScreenHeader } from "../../components/AndroidScreenHeader";
 import { SymbolView } from "../../components/AppSymbol";
@@ -192,7 +192,7 @@ function FileContent(props: {
     <View className="flex-1 bg-sheet">
       {props.truncated ? (
         <View className="border-b border-adaptive-amber-200-900-a60 bg-adaptive-amber-50-950-a40 px-4 py-2">
-          <Text className="text-2xs font-t3-bold uppercase text-adaptive-amber-700-300">
+          <Text className="text-2xs font-pkfactory-bold uppercase text-adaptive-amber-700-300">
             Partial file
           </Text>
           <Text className="text-xs leading-snug text-adaptive-amber-800-200">

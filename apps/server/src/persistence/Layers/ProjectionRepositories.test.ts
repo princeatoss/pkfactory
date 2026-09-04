@@ -1,4 +1,4 @@
-import { ProjectId, ThreadId, ProviderInstanceId } from "@t3tools/contracts";
+import { ProjectId, ThreadId, ProviderInstanceId } from "@pkfactory/contracts";
 import { assert, it } from "@effect/vitest";
 import * as Effect from "effect/Effect";
 import * as Layer from "effect/Layer";
@@ -212,9 +212,9 @@ projectionRepositoriesLayer("Projection repositories", (it) => {
       const threads = yield* ProjectionThreadRepository;
       const linkedPullRequest = {
         projectId: ProjectId.make("project-linked-pr"),
-        repository: "pingdotgg/t3code",
+        repository: "princeatoss/pkfactory",
         number: 42,
-        url: "https://github.com/pingdotgg/t3code/pull/42",
+        url: "https://github.com/princeatoss/pkfactory/pull/42",
       };
 
       yield* threads.upsert({

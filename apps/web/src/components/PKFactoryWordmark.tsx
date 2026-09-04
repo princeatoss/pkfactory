@@ -1,0 +1,12 @@
+import type { SVGProps } from "react";
+
+export function PKFactoryWordmark(props: SVGProps<SVGSVGElement>) {
+  return (
+    <svg {...props} viewBox="0 0 70 40" xmlns="http://www.w3.org/2000/svg">
+      <path
+        d="M3 3h17c9 0 14 5 14 13s-5 13-14 13h-9v8H3V3Zm8 8v10h9c4 0 6-2 6-5s-2-5-6-5h-9Zm27-8h8v13L57 3h10L53 19l15 18H57L46 24v13h-8V3Z"
+        fill="currentColor"
+      />
+    </svg>
+  );
+}

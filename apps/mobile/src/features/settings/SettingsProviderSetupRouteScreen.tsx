@@ -1,12 +1,12 @@
 import { useAtomValue } from "@effect/atom-react";
 import { useNavigation, type StaticScreenProps } from "@react-navigation/native";
-import type { AtomCommandResult } from "@t3tools/client-runtime/state/runtime";
+import type { AtomCommandResult } from "@pkfactory/client-runtime/state/runtime";
 import {
   ANTIGRAVITY_AUTH_METHODS,
   AuthOrchestrationOperateScope,
   EnvironmentId,
   ProviderInstanceId,
-} from "@t3tools/contracts";
+} from "@pkfactory/contracts";
 import * as Schema from "effect/Schema";
 import { AsyncResult } from "effect/unstable/reactivity";
 import { useCallback, useEffect, useRef, useState } from "react";
@@ -60,7 +60,7 @@ function SetupButton(props: {
     >
       <Text
         className={cn(
-          "text-base font-t3-medium text-white",
+          "text-base font-pkfactory-medium text-white",
           props.primary && "text-black",
           props.destructive && "text-red-400",
         )}
@@ -337,7 +337,7 @@ function ProviderSetupScreen({ environmentId, instanceId }: ProviderSetupRoutePa
                     onPress={() => {
                       Alert.alert(
                         "Remove the Antigravity install?",
-                        `This removes T3's managed install from ${environmentLabel}. Providers that use it will need it installed again. Google credentials and threads stay.`,
+                        `This removes PK Factory's managed install from ${environmentLabel}. Providers that use it will need it installed again. Google credentials and threads stay.`,
                         [
                           { text: "Cancel", style: "cancel" },
                           {
@@ -368,7 +368,7 @@ function ProviderSetupScreen({ environmentId, instanceId }: ProviderSetupRoutePa
             ) : null}
             {provider.setup?.canAuthenticate ? (
               <View className="gap-3 border-t border-white/20 pt-4">
-                <Text className="text-lg font-t3-medium text-white">{methodLabel}</Text>
+                <Text className="text-lg font-pkfactory-medium text-white">{methodLabel}</Text>
                 <Text className="text-base text-white">
                   {signedIn
                     ? "Signed in. Credentials stay on this environment."

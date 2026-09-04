@@ -9,26 +9,29 @@ import type {
   MessageId,
   ThreadId,
   TurnId,
-} from "@t3tools/contracts";
-import { renderAssistantCitationsAsText } from "@t3tools/shared/assistantCitations";
+} from "@pkfactory/contracts";
+import { renderAssistantCitationsAsText } from "@pkfactory/shared/assistantCitations";
 import {
   codexArtifactTemplatePresentationLabel,
   type CodexArtifactTemplate,
-} from "@t3tools/client-runtime/codex-artifact-templates";
-import { resolveAssetUrl } from "@t3tools/client-runtime/state/assets";
-import { formatAttachmentSize } from "@t3tools/client-runtime/state/attachments";
-import { squashAtomCommandFailure } from "@t3tools/client-runtime/state/runtime";
+} from "@pkfactory/client-runtime/codex-artifact-templates";
+import { resolveAssetUrl } from "@pkfactory/client-runtime/state/assets";
+import { formatAttachmentSize } from "@pkfactory/client-runtime/state/attachments";
+import { squashAtomCommandFailure } from "@pkfactory/client-runtime/state/runtime";
 import {
   classifyMarkdownImageSource,
   markdownImageSourceFragment,
-} from "@t3tools/client-runtime/markdown-images";
-import { resolveViewedImageAsset } from "@t3tools/client-runtime/work-log/presentation";
+} from "@pkfactory/client-runtime/markdown-images";
+import { resolveViewedImageAsset } from "@pkfactory/client-runtime/work-log/presentation";
 import {
   renderCodexFileCitationsAsMarkdown,
   splitCodexArtifactTemplateMarkdown,
-} from "@t3tools/client-runtime/codex-markdown-directives";
-import { CHAT_LIST_ANCHOR_OFFSET, resolveChatListAnchoredEndSpace } from "@t3tools/shared/chatList";
-import { videoMimeType } from "@t3tools/shared/video";
+} from "@pkfactory/client-runtime/codex-markdown-directives";
+import {
+  CHAT_LIST_ANCHOR_OFFSET,
+  resolveChatListAnchoredEndSpace,
+} from "@pkfactory/shared/chatList";
+import { videoMimeType } from "@pkfactory/shared/video";
 import { SymbolView, type AppSymbolName } from "../../components/AppSymbol";
 import { HeaderHeightContext } from "@react-navigation/elements";
 import { useFocusEffect, useNavigation } from "@react-navigation/native";
@@ -132,12 +135,12 @@ import {
 } from "../../lib/appearancePreferences";
 import { useAppearancePreferences } from "../settings/appearance/AppearancePreferencesProvider";
 import { useAppearanceCodeSurface } from "../settings/appearance/useAppearanceCodeSurface";
-import { markdownFileIconSource } from "@t3tools/mobile-markdown-text/file-icons";
+import { markdownFileIconSource } from "@pkfactory/mobile-markdown-text/file-icons";
 import {
   normalizeNativeMarkdownUrl,
   resolveMarkdownInlineCodePresentation,
   resolveMarkdownLinkPresentation,
-} from "@t3tools/mobile-markdown-text/links";
+} from "@pkfactory/mobile-markdown-text/links";
 import {
   deriveThreadFeedPresentation,
   isContextCompactionActivityGroup,
@@ -472,7 +475,7 @@ function MessageAttachmentFile(props: {
           )}
         </View>
         <View className="min-w-0 flex-1 gap-1">
-          <Text className="font-t3-medium text-sm text-foreground" numberOfLines={2}>
+          <Text className="font-pkfactory-medium text-sm text-foreground" numberOfLines={2}>
             {attachment.name}
           </Text>
           <Text className="text-xs text-foreground-muted" numberOfLines={1}>
@@ -638,7 +641,7 @@ function MarkdownInlineCode(props: {
   const presentation = insideLink ? null : resolveMarkdownInlineCodePresentation(props.content);
   return (
     <NativeText
-      className={presentation ? "font-t3-bold" : "font-mono"}
+      className={presentation ? "font-pkfactory-bold" : "font-mono"}
       onPress={presentation ? () => props.onLinkPress(presentation.href) : undefined}
       style={{
         color: presentation ? props.textColor : props.codeColor,
@@ -696,7 +699,7 @@ function ArtifactTemplateCard(props: {
         </View>
       </View>
       <View className="min-w-0 flex-1">
-        <Text className="font-t3-bold text-sm text-foreground" numberOfLines={1}>
+        <Text className="font-pkfactory-bold text-sm text-foreground" numberOfLines={1}>
           {props.template.displayName}
         </Text>
         <Text className="text-xs text-foreground-muted">
@@ -710,7 +713,7 @@ function ArtifactTemplateCard(props: {
           className="min-h-9 justify-center rounded-lg border border-border bg-subtle px-3 active:opacity-65"
           onPress={() => props.onUse?.(props.template)}
         >
-          <Text className="font-t3-bold text-xs text-foreground">Use template</Text>
+          <Text className="font-pkfactory-bold text-xs text-foreground">Use template</Text>
         </Pressable>
       ) : null}
     </View>
@@ -1042,7 +1045,7 @@ function useMarkdownStyles(
         if (presentation.kind === "file") {
           return (
             <NativeText
-              className="font-t3-bold"
+              className="font-pkfactory-bold"
               onPress={() => onLinkPress(href)}
               style={{ color: inlineTextColor }}
             >
@@ -1346,7 +1349,7 @@ function renderFeedEntry(
       >
         <Text
           key={props.workRowSizing.textSizeKey}
-          className="font-t3-medium text-sm tabular-nums text-foreground-muted"
+          className="font-pkfactory-medium text-sm tabular-nums text-foreground-muted"
         >
           {entry.label}
         </Text>
@@ -1397,7 +1400,7 @@ function renderFeedEntry(
             tintColor={iconSubtleColor}
             type="monochrome"
           />
-          <Text className="font-t3-medium text-xs text-foreground-muted">{label}</Text>
+          <Text className="font-pkfactory-medium text-xs text-foreground-muted">{label}</Text>
         </View>
         <View className="h-px flex-1 bg-adaptive-neutral-200-a80-white-a8" />
       </View>
@@ -1482,7 +1485,7 @@ function renderFeedEntry(
             })}
           </View>
           <View className="mt-1 flex-row items-center justify-end gap-1 pr-0.5">
-            <Text className="font-t3-medium text-xs tabular-nums text-adaptive-neutral-600-400">
+            <Text className="font-pkfactory-medium text-xs tabular-nums text-adaptive-neutral-600-400">
               {timestampLabel}
             </Text>
             {message.text.trim().length > 0 ? (
@@ -1553,7 +1556,7 @@ function renderFeedEntry(
               buttonSize={28}
               iconSize={13}
             />
-            <Text className="font-t3-medium text-xs tabular-nums text-adaptive-neutral-600-400">
+            <Text className="font-pkfactory-medium text-xs tabular-nums text-adaptive-neutral-600-400">
               {timestampLabel}
             </Text>
           </View>
@@ -1844,7 +1847,9 @@ function ThreadFeedPlaceholder(props: {
       }}
     >
       <View className="max-w-[320px] items-center gap-2">
-        <Text className="text-center font-t3-bold text-lg text-foreground">{props.title}</Text>
+        <Text className="text-center font-pkfactory-bold text-lg text-foreground">
+          {props.title}
+        </Text>
         <Text className="text-center text-sm leading-normal text-foreground-secondary">
           {props.detail}
         </Text>

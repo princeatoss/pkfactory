@@ -11,10 +11,10 @@ import {
   RuntimeRequestId,
   type ThreadId,
   TurnId,
-} from "@t3tools/contracts";
-import { HostProcessEnvironment, HostProcessPlatform } from "@t3tools/shared/hostProcess";
-import { getModelSelectionStringOptionValue } from "@t3tools/shared/model";
-import { stableStringify } from "@t3tools/shared/relaySigning";
+} from "@pkfactory/contracts";
+import { HostProcessEnvironment, HostProcessPlatform } from "@pkfactory/shared/hostProcess";
+import { getModelSelectionStringOptionValue } from "@pkfactory/shared/model";
+import { stableStringify } from "@pkfactory/shared/relaySigning";
 import * as Clock from "effect/Clock";
 import * as Crypto from "effect/Crypto";
 import * as DateTime from "effect/DateTime";
@@ -295,7 +295,7 @@ export function selectGrokPermissionOptionId(
   if (preferredId) {
     return preferredId;
   }
-  // Grok 4.6 often omits allow_always. T3 still offers "Always allow this session".
+  // Grok 4.6 often omits allow_always. PK Factory still offers "Always allow this session".
   if (decision === "acceptForSession") {
     const once = request.options.find((entry) => entry.kind === "allow_once");
     const onceId = once?.optionId.trim();
@@ -872,7 +872,7 @@ export function makeGrokAdapter(grokSettings: GrokSettings, options?: GrokAdapte
         );
       });
 
-    /** Surface Grok plan.md as T3's proposed-plan card (while writing + on exit). */
+    /** Surface Grok plan.md as PK Factory's proposed-plan card (while writing + on exit). */
     const emitProposedPlanCompleted = (
       ctx: GrokSessionContext,
       turnId: TurnId | undefined,
@@ -994,13 +994,13 @@ export function makeGrokAdapter(grokSettings: GrokSettings, options?: GrokAdapte
             cwd,
             runtimeMode: input.runtimeMode,
             ...(resumeSessionId ? { resumeSessionId } : {}),
-            clientInfo: { name: "t3-code", version: "0.0.0" },
+            clientInfo: { name: "pkfactory", version: "0.0.0" },
             ...(mcpSession
               ? {
                   mcpServers: [
                     {
                       type: "http" as const,
-                      name: "t3-code",
+                      name: "pkfactory",
                       url: mcpSession.endpoint,
                       headers: [
                         {
@@ -1084,7 +1084,7 @@ export function makeGrokAdapter(grokSettings: GrokSettings, options?: GrokAdapte
               { discard: true },
             );
             // Grok intercepts exit_plan_mode and reverse-requests client approval.
-            // Capture plan into T3 proposed-plan UI and abandon the native gate so
+            // Capture plan into PK Factory proposed-plan UI and abandon the native gate so
             // the turn does not hang (Claude ExitPlanMode pattern).
             yield* Effect.forEach(
               ["x.ai/exit_plan_mode", "_x.ai/exit_plan_mode"] as const,

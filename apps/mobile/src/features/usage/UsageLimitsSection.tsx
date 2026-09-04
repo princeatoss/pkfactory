@@ -7,7 +7,7 @@ import type {
   ServerProviderResetCredits,
   ServerProviderUsageWindow,
   UsageLimitSourceAccount,
-} from "@t3tools/contracts";
+} from "@pkfactory/contracts";
 import {
   collectLimitSources,
   collectLimitsGroups,
@@ -17,7 +17,7 @@ import {
   limitsNotice,
   paceOf,
   providerLimitsLabel,
-} from "@t3tools/shared/usageLimits";
+} from "@pkfactory/shared/usageLimits";
 import { type ReactNode, useState } from "react";
 import { Alert, Pressable, View } from "react-native";
 
@@ -180,7 +180,7 @@ function ResetCredits(props: {
           onPress={confirm}
           className="self-start rounded-full bg-subtle-strong px-3 py-1.5"
         >
-          <Text className="text-sm font-t3-medium text-foreground">
+          <Text className="text-sm font-pkfactory-medium text-foreground">
             {busy ? "Using credit…" : "Use a reset credit"}
           </Text>
         </Pressable>

@@ -1,14 +1,14 @@
 included:
-  - ios/T3Code
-  - modules/t3-composer-editor/ios
-  - modules/t3-native-controls/ios
-  - modules/t3-terminal/ios
-  - modules/t3-review-diff/ios
+  - ios/PKFactory
+  - modules/pkfactory-composer-editor/ios
+  - modules/pkfactory-native-controls/ios
+  - modules/pkfactory-terminal/ios
+  - modules/pkfactory-review-diff/ios
 
 excluded:
   - ios/Pods
   - ios/build
-  - modules/t3-terminal/Vendor
+  - modules/pkfactory-terminal/Vendor
 
 reporter: xcode
 

@@ -1,5 +1,5 @@
-import { resolveMarkdownLinkPresentation } from "@t3tools/mobile-markdown-text/links";
-import type { MarkdownFileContextMenu } from "@t3tools/mobile-markdown-text/types";
+import { resolveMarkdownLinkPresentation } from "@pkfactory/mobile-markdown-text/links";
+import type { MarkdownFileContextMenu } from "@pkfactory/mobile-markdown-text/types";
 
 import {
   isAbsolutePath,

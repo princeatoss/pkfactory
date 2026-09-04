@@ -1,8 +1,8 @@
 # Observability
 
-> For maintainers. Using T3 Code? See [docs/user](../user/).
+> For maintainers. Using PK Factory? See [docs/user](../user/).
 
-T3 Code has one server-side observability model:
+PK Factory has one server-side observability model:
 
 - pretty logs go to stdout for humans
 - completed spans go to a local NDJSON trace file
@@ -10,7 +10,7 @@ T3 Code has one server-side observability model:
 
 The local trace file is the persisted source of truth for normal local launches. Those launches do not
 write a separate server log file, but SSH-managed launches also persist the remote process's
-stdout/stderr at `~/.t3/ssh-launch/<state>/server.log`.
+stdout/stderr at `~/.pkfactory/ssh-launch/<state>/server.log`.
 
 ## Where To Find Things
 
@@ -21,7 +21,7 @@ Logs are human-facing:
 - destination: stdout
 - format: `Logger.consolePretty()`
 - normal local persistence: none
-- SSH-managed launch persistence: `~/.t3/ssh-launch/<state>/server.log`
+- SSH-managed launch persistence: `~/.pkfactory/ssh-launch/<state>/server.log`
 
 If you want a log message to show up in the trace file, emit it inside an active span with `Effect.log...`. `Logger.tracerLogger` will attach it as a span event.
 
@@ -29,10 +29,10 @@ If you want a log message to show up in the trace file, emit it inside an active
 
 Completed spans are written as NDJSON records to `serverTracePath`. The default depends on how the
 server starts: production and explicitly configured homes use
-`<home>/userdata/logs/server.trace.ndjson` (so `~/.t3/userdata/...` by default, or
+`<home>/userdata/logs/server.trace.ndjson` (so `~/.pkfactory/userdata/...` by default, or
 `/custom/path/userdata/...` with `--home-dir /custom/path`), a linked worktree dev run uses
-`<worktree>/.t3/userdata/logs/server.trace.ndjson`, and an implicit dev run outside a linked
-worktree uses `~/.t3/dev/logs/server.trace.ndjson`.
+`<worktree>/.pkfactory/userdata/logs/server.trace.ndjson`, and an implicit dev run outside a linked
+worktree uses `~/.pkfactory/dev/logs/server.trace.ndjson`.
 
 Important fields common to both record types:
 
@@ -85,7 +85,7 @@ You do not need any extra env vars. Just run the app normally and inspect `serve
 Examples:
 
 ```bash
-npx t3
+npx pkfactory
 ```
 
 ```bash
@@ -119,16 +119,16 @@ Default Grafana login:
 #### 2. Export OTLP env vars
 
 ```bash
-export T3CODE_OTLP_TRACES_URL=http://localhost:4318/v1/traces
-export T3CODE_OTLP_METRICS_URL=http://localhost:4318/v1/metrics
-export T3CODE_OTLP_SERVICE_NAME=t3-local
+export PKFACTORY_OTLP_TRACES_URL=http://localhost:4318/v1/traces
+export PKFACTORY_OTLP_METRICS_URL=http://localhost:4318/v1/metrics
+export PKFACTORY_OTLP_SERVICE_NAME=pkfactory-local
 ```
 
 Optional:
 
 ```bash
-export T3CODE_TRACE_MIN_LEVEL=Info
-export T3CODE_TRACE_TIMING_ENABLED=true
+export PKFACTORY_TRACE_MIN_LEVEL=Info
+export PKFACTORY_TRACE_TIMING_ENABLED=true
 ```
 
 #### 3. Launch the app from that same shell
@@ -136,7 +136,7 @@ export T3CODE_TRACE_TIMING_ENABLED=true
 CLI:
 
 ```bash
-npx t3
+npx pkfactory
 ```
 
 Monorepo web/server dev:
@@ -153,23 +153,23 @@ node --run dev:desktop
 
 Packaged desktop app:
 
-Launch the actual app executable from the same shell so the desktop app and embedded backend inherit `T3CODE_OTLP_*`.
+Launch the actual app executable from the same shell so the desktop app and embedded backend inherit `PKFACTORY_OTLP_*`.
 
 macOS app bundle example:
 
 ```bash
-T3CODE_OTLP_TRACES_URL=http://localhost:4318/v1/traces \
-T3CODE_OTLP_METRICS_URL=http://localhost:4318/v1/metrics \
-T3CODE_OTLP_SERVICE_NAME=t3-desktop \
-"/Applications/T3 Code.app/Contents/MacOS/T3 Code"
+PKFACTORY_OTLP_TRACES_URL=http://localhost:4318/v1/traces \
+PKFACTORY_OTLP_METRICS_URL=http://localhost:4318/v1/metrics \
+PKFACTORY_OTLP_SERVICE_NAME=pkfactory-desktop \
+"/Applications/PK Factory.app/Contents/MacOS/PK Factory"
 ```
 
 Direct binary example:
 
 ```bash
-T3CODE_OTLP_TRACES_URL=http://localhost:4318/v1/traces \
-T3CODE_OTLP_METRICS_URL=http://localhost:4318/v1/metrics \
-T3CODE_OTLP_SERVICE_NAME=t3-desktop \
+PKFACTORY_OTLP_TRACES_URL=http://localhost:4318/v1/traces \
+PKFACTORY_OTLP_METRICS_URL=http://localhost:4318/v1/metrics \
+PKFACTORY_OTLP_SERVICE_NAME=pkfactory-desktop \
 ./path/to/your/desktop-app-binary
 ```
 
@@ -189,19 +189,19 @@ Resolve the path for the launch mode once. Production and explicitly configured 
 state under the base directory's `userdata` folder:
 
 ```bash
-TRACE_FILE="${T3CODE_HOME:-$HOME/.t3}/userdata/logs/server.trace.ndjson"
+TRACE_FILE="${PKFACTORY_HOME:-$HOME/.pkfactory}/userdata/logs/server.trace.ndjson"
 ```
 
 A dev server started from a linked worktree defaults to that worktree's local home:
 
 ```bash
-TRACE_FILE="$WORKTREE/.t3/userdata/logs/server.trace.ndjson"
+TRACE_FILE="$WORKTREE/.pkfactory/userdata/logs/server.trace.ndjson"
 ```
 
 Only an implicit dev run outside a linked worktree uses the shared dev directory:
 
 ```bash
-TRACE_FILE="$HOME/.t3/dev/logs/server.trace.ndjson"
+TRACE_FILE="$HOME/.pkfactory/dev/logs/server.trace.ndjson"
 ```
 
 Tail the selected file:
@@ -305,7 +305,7 @@ Recommended flow in Grafana:
 
 Good first searches:
 
-- service name such as `t3-local`, `t3-dev`, or `t3-desktop`
+- service name such as `pkfactory-local`, `pkfactory-dev`, or `pkfactory-desktop`
 - span names like `sendTurn` or a Git operation such as `GitVcsDriver.statusDetails.status`
 - Git spans whose `git.operation` attribute identifies the operation
 - orchestration spans with attributes like `orchestration.command_type`
@@ -319,18 +319,18 @@ Traces are best for one request. Metrics are best for trends.
 
 Good metric families to watch:
 
-- `t3_rpc_request_duration`
-- `t3_orchestration_command_duration`
-- `t3_orchestration_command_ack_duration`
-- `t3_provider_turn_duration`
-- `t3_git_command_duration`
+- `pkfactory_rpc_request_duration`
+- `pkfactory_orchestration_command_duration`
+- `pkfactory_orchestration_command_ack_duration`
+- `pkfactory_provider_turn_duration`
+- `pkfactory_git_command_duration`
 
 Counters tell you volume and failure rate:
 
-- `t3_rpc_requests_total`
-- `t3_orchestration_commands_total`
-- `t3_provider_turns_total`
-- `t3_git_commands_total`
+- `pkfactory_rpc_requests_total`
+- `pkfactory_orchestration_commands_total`
+- `pkfactory_provider_turns_total`
+- `pkfactory_git_commands_total`
 
 Use metrics when the question is:
 
@@ -346,7 +346,7 @@ Use traces when the question is:
 
 ### What The New Ack Metric Means
 
-`t3_orchestration_command_ack_duration` measures:
+`pkfactory_orchestration_command_ack_duration` measures:
 
 - start: command dispatch enters the orchestration engine
 - end: the first committed domain event for that command is published by the server
@@ -377,7 +377,7 @@ If you need those later, add client-side instrumentation or a dedicated server f
 
 ### "Did this command take too long to acknowledge?"
 
-1. Check `t3_orchestration_command_ack_duration` by `commandType`.
+1. Check `pkfactory_orchestration_command_ack_duration` by `commandType`.
 2. If it is high, inspect the corresponding orchestration trace.
 3. Look at child spans for projection, sqlite, provider, or git work.
 
@@ -391,7 +391,7 @@ If you need those later, add client-side instrumentation or a dedicated server f
 
 Usually one of these is true:
 
-- `T3CODE_OTLP_TRACES_URL` was not set
+- `PKFACTORY_OTLP_TRACES_URL` was not set
 - the app was launched from a different environment than the one where you exported the vars
 - the app was not fully restarted after changing env
 - Grafana is looking at the wrong time range or service name
@@ -515,19 +515,19 @@ It provides:
 
 Local trace file:
 
-- `T3CODE_TRACE_FILE`: override trace file path
-- `T3CODE_TRACE_MAX_BYTES`: per-file rotation size, default `10485760`
-- `T3CODE_TRACE_MAX_FILES`: rotated file count, default `10`
-- `T3CODE_TRACE_BATCH_WINDOW_MS`: flush window, default `200`
-- `T3CODE_TRACE_MIN_LEVEL`: minimum trace level, default `Info`
-- `T3CODE_TRACE_TIMING_ENABLED`: enable timing metadata, default `true`
+- `PKFACTORY_TRACE_FILE`: override trace file path
+- `PKFACTORY_TRACE_MAX_BYTES`: per-file rotation size, default `10485760`
+- `PKFACTORY_TRACE_MAX_FILES`: rotated file count, default `10`
+- `PKFACTORY_TRACE_BATCH_WINDOW_MS`: flush window, default `200`
+- `PKFACTORY_TRACE_MIN_LEVEL`: minimum trace level, default `Info`
+- `PKFACTORY_TRACE_TIMING_ENABLED`: enable timing metadata, default `true`
 
 OTLP export:
 
-- `T3CODE_OTLP_TRACES_URL`: OTLP trace endpoint
-- `T3CODE_OTLP_METRICS_URL`: OTLP metric endpoint
-- `T3CODE_OTLP_EXPORT_INTERVAL_MS`: export interval, default `10000`
-- `T3CODE_OTLP_SERVICE_NAME`: service name, default `t3-server`
+- `PKFACTORY_OTLP_TRACES_URL`: OTLP trace endpoint
+- `PKFACTORY_OTLP_METRICS_URL`: OTLP metric endpoint
+- `PKFACTORY_OTLP_EXPORT_INTERVAL_MS`: export interval, default `10000`
+- `PKFACTORY_OTLP_SERVICE_NAME`: service name, default `pkfactory-server`
 
 If the OTLP URLs are unset, local tracing still works and metrics stay in-process only.
 

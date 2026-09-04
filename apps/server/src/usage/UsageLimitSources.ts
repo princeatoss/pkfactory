@@ -17,8 +17,8 @@ import {
   type UsageLimitSourceConfig,
   type UsageLimitSourceId,
   type UsageLimitSourceSnapshot,
-} from "@t3tools/contracts";
-import { resolveServerBackgroundActivitySettings } from "@t3tools/shared/backgroundActivitySettings";
+} from "@pkfactory/contracts";
+import { resolveServerBackgroundActivitySettings } from "@pkfactory/shared/backgroundActivitySettings";
 import type * as Cause from "effect/Cause";
 import * as Context from "effect/Context";
 import * as Data from "effect/Data";
@@ -50,7 +50,7 @@ export class UsageLimitSources extends Context.Service<
     /** Re-read every source now. Never fails; failures land on the snapshot. */
     readonly refresh: Effect.Effect<void>;
   }
->()("t3/usage/UsageLimitSources") {}
+>()("pkfactory/usage/UsageLimitSources") {}
 
 /**
  * A bounded, client-safe reason for a failed hub read. The exact failure

@@ -2,8 +2,8 @@
 import * as NodeChildProcess from "node:child_process";
 
 import * as NodeServices from "@effect/platform-node/NodeServices";
-import { ProviderInstanceId } from "@t3tools/contracts";
-import { HostProcessPlatform } from "@t3tools/shared/hostProcess";
+import { ProviderInstanceId } from "@pkfactory/contracts";
+import { HostProcessPlatform } from "@pkfactory/shared/hostProcess";
 import { describe, expect, it } from "@effect/vitest";
 import * as Effect from "effect/Effect";
 import * as FileSystem from "effect/FileSystem";
@@ -47,9 +47,9 @@ const decodeJson = Schema.decodeUnknownSync(Schema.fromJsonString(Schema.Unknown
 describe("Antigravity process environment", () => {
   const profile: AntigravityProfile = {
     platform: "linux",
-    geminiHome: "/t3/userdata/providers/antigravity/profile",
-    acpDirectory: "/t3/userdata/providers/antigravity/profile/antigravity-acp",
-    tokenPath: "/t3/userdata/providers/antigravity/profile/antigravity-acp/acp_token.json",
+    geminiHome: "/pkfactory/userdata/providers/antigravity/profile",
+    acpDirectory: "/pkfactory/userdata/providers/antigravity/profile/antigravity-acp",
+    tokenPath: "/pkfactory/userdata/providers/antigravity/profile/antigravity-acp/acp_token.json",
     browserCommand: "managed-browser-helper",
   };
 

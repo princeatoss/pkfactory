@@ -1,5 +1,5 @@
 /**
- * Integrations settings - preferences for surfaces T3 Code embeds rather than
+ * Integrations settings - preferences for surfaces PK Factory embeds rather than
  * owns. Browser is the first section: the defaults a preview tab opens at,
  * applied to both hand-opened tabs and agent `preview_open` calls that don't
  * state their own size.
@@ -33,8 +33,8 @@ import {
   type BrowserImportSource,
   type PreviewAppearancePreference,
   type PreviewViewportSetting,
-} from "@t3tools/contracts";
-import { PREVIEW_VIEWPORT_PRESETS } from "@t3tools/shared/previewViewport";
+} from "@pkfactory/contracts";
+import { PREVIEW_VIEWPORT_PRESETS } from "@pkfactory/shared/previewViewport";
 import { InfoIcon, MoreVertical, Plus as PlusIcon } from "lucide-react";
 import { useCallback, useEffect, useRef, useState, type ReactNode } from "react";
 
@@ -504,7 +504,7 @@ function BrowserRecordingFrameRateSetting({ disabled }: { readonly disabled: boo
 
 const LINK_TARGET_LABELS: Readonly<Record<BrowserLinkTarget, string>> = {
   system: "Your default browser",
-  app: "T3 Code",
+  app: "PK Factory",
 };
 
 function BrowserLinkTargetSetting({ disabled }: { readonly disabled: boolean }) {

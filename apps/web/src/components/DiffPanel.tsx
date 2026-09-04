@@ -4,9 +4,9 @@ import { useParams } from "@tanstack/react-router";
 import {
   isAtomCommandInterrupted,
   squashAtomCommandFailure,
-} from "@t3tools/client-runtime/state/runtime";
-import { safeErrorLogAttributes } from "@t3tools/client-runtime/errors";
-import type { ScopedThreadRef, TurnId } from "@t3tools/contracts";
+} from "@pkfactory/client-runtime/state/runtime";
+import { safeErrorLogAttributes } from "@pkfactory/client-runtime/errors";
+import type { ScopedThreadRef, TurnId } from "@pkfactory/contracts";
 import {
   ArrowRightIcon,
   CheckIcon,
@@ -88,7 +88,7 @@ import { createGitDiffFileContentsLoader } from "../lib/diffFileContents";
 
 type DiffThemeType = "light" | "dark";
 const AUTOMATIC_BASE_REF = "__automatic_base_ref__";
-const DIFF_FILE_TREE_STORAGE_KEY = "t3code.diffFileTreeOpen";
+const DIFF_FILE_TREE_STORAGE_KEY = "pkfactory.diffFileTreeOpen";
 
 interface CollapsedDiffFilesState {
   readonly scopeKey: string | null;

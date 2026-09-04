@@ -1,6 +1,6 @@
 # Product analytics
 
-T3 Code sends anonymous product events from the server to PostHog. The server
+PK Factory sends anonymous product events from the server to PostHog. The server
 uses the first available hashed Codex account ID, hashed Claude user ID, or
 installation-scoped anonymous ID as the distinct ID. It also keeps the
 telemetry opt-out, event buffer, and batch delivery. Clients do not load the
@@ -36,7 +36,7 @@ token counts when the provider supplies enough data.
 | `effort`              | Selected or provider-reported reasoning effort when known.                                                                      |
 | `interactionMode`     | Turn interaction mode, `default` or `plan`, when known.                                                                         |
 | `runtimeMode`         | Session permission mode when known.                                                                                             |
-| `mixedModels`         | `true` when T3 Code observed `model.rerouted` during the turn. This does not split token counts by model.                       |
+| `mixedModels`         | `true` when PK Factory observed `model.rerouted` during the turn. This does not split token counts by model.                    |
 | `durationMs`          | Time from the observed turn start or accepted send request to the terminal event. Omitted when start metadata is not available. |
 | `terminalStatus`      | `completed`, `failed`, `interrupted`, or `cancelled`.                                                                           |
 | `usageStatus`         | `complete`, `partial`, or `unavailable`.                                                                                        |
@@ -49,7 +49,7 @@ token counts when the provider supplies enough data.
 | `reasoningTokens`     | Reasoning tokens when the provider reports them separately. This is a subset of `outputTokens`.                                 |
 
 `complete` means the provider supplied full input and output totals for the
-turn. `partial` means each included count is valid, but T3 Code did not observe
+turn. `partial` means each included count is valid, but PK Factory did not observe
 the full turn. This can happen after an interruption, provider failure, or
 reconnect. `unavailable` means the provider did not supply trustworthy counts.
 Numeric properties are omitted when their values are unknown. They are not set
@@ -68,7 +68,7 @@ Duplicate terminal events for the same provider instance, thread, and turn
 produce one analytics event.
 
 Collection is best effort and starts with the first server release that
-contains this event. T3 Code does not scan provider history or backfill older
+contains this event. PK Factory does not scan provider history or backfill older
 turns.
 
 ## Recommended properties
@@ -79,7 +79,7 @@ reports them. Older clients can omit every client property.
 | Property               | Values and meaning                                                                                                                                                                              |
 | ---------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `surface`              | Product client: `web`, `desktop`, or `mobile`.                                                                                                                                                  |
-| `webDeployment`        | Web delivery: `hosted` for the hosted app or `server` for web files served by a T3 server. Web only. This does not describe connection distance.                                                |
+| `webDeployment`        | Web delivery: `hosted` for the hosted app or `server` for web files served by a PK Factory server. Web only. This does not describe connection distance.                                        |
 | `clientOs`             | `macOS`, `Windows`, `Linux`, `iOS`, `Android`, `ChromeOS`, `other`, or `unknown`.                                                                                                               |
 | `clientDeviceType`     | `desktop`, `phone`, `tablet`, or `unknown`. This is separate from `surface`.                                                                                                                    |
 | `clientBrowser`        | Normalized browser family. Web only. Browser detection is best effort.                                                                                                                          |
@@ -96,7 +96,7 @@ events.
 | `serverOs`         | Server process OS, normalized to the same names as `clientOs`. |
 | `serverArch`       | Server process architecture.                                   |
 | `serverWslDistro`  | WSL distribution from `WSL_DISTRO_NAME`, when present.         |
-| `serverAppVersion` | T3 server version.                                             |
+| `serverAppVersion` | PK Factory server version.                                     |
 | `serverMode`       | Server runtime mode: `desktop` or `web`.                       |
 
 ## Legacy properties
@@ -106,7 +106,7 @@ Existing property meanings do not change:
 - `clientType` describes how the server runs. It is `desktop-app` for a desktop
   server and `cli-web-client` for a CLI web server. It does not describe the
   connected client. Use `surface` and `webDeployment` for new reports.
-- `platform`, `arch`, `wsl`, and `t3CodeVersion` describe the server. Use the
+- `platform`, `arch`, `wsl`, and `pkfactoryCodeVersion` describe the server. Use the
   new `server*` names for new reports.
 - `appVersion` describes the connected client. Use `clientAppVersion` for new
   reports.

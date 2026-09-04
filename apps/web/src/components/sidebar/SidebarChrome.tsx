@@ -1,6 +1,7 @@
 import {
   ArrowLeftIcon,
   ChartNoAxesColumnIcon,
+  FileCode2Icon,
   GitPullRequestIcon,
   SettingsIcon,
 } from "lucide-react";
@@ -11,7 +12,7 @@ import { Link, useCanGoBack, useLocation, useNavigate } from "@tanstack/react-ro
 import { useEnvironmentIdentificationMode } from "../../hooks/useSettings";
 import { cn } from "../../lib/utils";
 import { useEnvironments } from "../../state/environments";
-import { T3Wordmark } from "../T3Wordmark";
+import { PKFactoryWordmark } from "../PKFactoryWordmark";
 import {
   resolveEnvironmentIdentificationPillLabel,
   resolveSidebarStageBackdropVariant,
@@ -92,7 +93,7 @@ function SidebarBrand({ onBackdrop }: { onBackdrop: boolean }) {
       to="/"
     >
       <span className="inline-flex min-w-0 items-baseline gap-1">
-        <T3Wordmark aria-label="T3" className="h-2.5 w-auto shrink-0" />
+        <PKFactoryWordmark aria-label="PK Factory" className="h-2.5 w-auto shrink-0" />
         <span
           className={cn(
             "truncate text-sm font-medium tracking-tight",
@@ -143,9 +144,11 @@ export const SidebarUtilityMenu = memo(function SidebarUtilityMenu() {
           ? "project-settings"
           : location.pathname === "/usage"
             ? "usage"
-            : location.pathname === "/pull-requests"
-              ? "pull-requests"
-              : null,
+            : location.pathname === "/workflows"
+              ? "workflows"
+              : location.pathname === "/pull-requests"
+                ? "pull-requests"
+                : null,
   });
   const { environments } = useEnvironments();
   // The page reads every connected server, so one of them offering pull requests is enough for
@@ -201,6 +204,14 @@ export const SidebarUtilityMenu = memo(function SidebarUtilityMenu() {
             icon={<SettingsIcon />}
             label="Settings"
             onClick={handleSettingsClick}
+          />
+          <SidebarUtilityItem
+            icon={<FileCode2Icon />}
+            label="Workflows"
+            onClick={() => {
+              closeMobileSidebar();
+              void navigate({ to: "/workflows" });
+            }}
           />
           {pullRequestsSupported ? (
             <SidebarUtilityItem

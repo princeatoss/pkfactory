@@ -3,15 +3,15 @@ import {
   type ModelSelection,
   ProviderDriverKind,
   type ServerProviderModel,
-} from "@t3tools/contracts";
+} from "@pkfactory/contracts";
 import * as Option from "effect/Option";
 import {
   getModelSelectionStringOptionValue,
   getProviderOptionCurrentValue,
   getProviderOptionDescriptors,
   normalizeCustomModelSlug,
-} from "@t3tools/shared/model";
-import { compareSemverVersions } from "@t3tools/shared/semver";
+} from "@pkfactory/shared/model";
+import { compareSemverVersions } from "@pkfactory/shared/semver";
 
 import {
   type ClaudeCodeCompatibility,

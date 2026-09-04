@@ -20,8 +20,8 @@ import {
   type RuntimeMode,
   ThreadId,
   ProviderInstanceId,
-} from "@t3tools/contracts";
-import { createModelSelection } from "@t3tools/shared/model";
+} from "@pkfactory/contracts";
+import { createModelSelection } from "@pkfactory/shared/model";
 import { assert, describe, it } from "@effect/vitest";
 import * as Context from "effect/Context";
 import * as Deferred from "effect/Deferred";
@@ -53,7 +53,7 @@ const encodeUnknownJsonString = Schema.encodeSync(Schema.fromJsonString(Schema.U
 
 // Test-local service tag so the rest of the file can keep using `yield* ClaudeAdapter`.
 class ClaudeAdapter extends Context.Service<ClaudeAdapter, ClaudeAdapterShape>()(
-  "t3/provider/Layers/ClaudeAdapter.test/ClaudeAdapter",
+  "pkfactory/provider/Layers/ClaudeAdapter.test/ClaudeAdapter",
 ) {}
 
 class FakeClaudeQuery implements AsyncIterable<SDKMessage> {
@@ -390,7 +390,7 @@ describe("ClaudeAdapterLive", () => {
         type: "preset",
         preset: "claude_code",
         append:
-          "<runtime_info>In case you're asked: you are running in T3 Code through the Claude Code harness. No need to mention this otherwise. You can embed images and videos in your response using Markdown with absolute file paths.</runtime_info>",
+          "<runtime_info>In case you're asked: you are running in PK Factory through the Claude Code harness. No need to mention this otherwise. You can embed images and videos in your response using Markdown with absolute file paths.</runtime_info>",
       });
       assert.equal(createInput?.options.permissionMode, "bypassPermissions");
       assert.equal(createInput?.options.allowDangerouslySkipPermissions, true);
@@ -3483,8 +3483,8 @@ describe("ClaudeAdapterLive", () => {
           type: "system",
           subtype: "code_change_published",
           provider: "github",
-          url: "https://github.com/pingdotgg/t3code/pull/1",
-          repo: "pingdotgg/t3code",
+          url: "https://github.com/princeatoss/pkfactory/pull/1",
+          repo: "princeatoss/pkfactory",
           identifier: "1",
           session_id: "session",
           uuid: "ccp",
