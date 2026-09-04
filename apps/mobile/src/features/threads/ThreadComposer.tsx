@@ -6,8 +6,8 @@ import type {
   OrchestrationThreadShell,
   ProviderInteractionMode,
   RuntimeMode,
-  ServerConfig as T3ServerConfig,
-} from "@t3tools/contracts";
+  ServerConfig as PKFactoryServerConfig,
+} from "@pkfactory/contracts";
 import { StackActions, useFocusEffect, useNavigation } from "@react-navigation/native";
 import type { ReactNode } from "react";
 import {
@@ -112,7 +112,7 @@ export interface ThreadComposerProps {
   readonly environmentLabel: string | null;
   readonly selectedThread: OrchestrationThreadShell;
   readonly hasCompactableConversation: boolean;
-  readonly serverConfig: T3ServerConfig | null;
+  readonly serverConfig: PKFactoryServerConfig | null;
   readonly queueCount: number;
   readonly environmentId: EnvironmentId;
   readonly projectCwd: string | null;
@@ -280,7 +280,7 @@ const ComposerConnectionStatusPill = memo(function ComposerConnectionStatusPill(
           <View className="h-2 w-2 rounded-full bg-red-500" />
         )}
         <Text
-          className="max-w-[260px] text-sm font-t3-bold leading-snug text-foreground"
+          className="max-w-[260px] text-sm font-pkfactory-bold leading-snug text-foreground"
           numberOfLines={1}
         >
           {props.status.label}
@@ -447,7 +447,7 @@ export const ThreadComposer = memo(function ThreadComposer(props: ThreadComposer
       armAgentAwarenessLiveActivityForLocalWork({
         environmentId: props.environmentId,
         threadTitle: props.selectedThread.title,
-        projectTitle: props.environmentLabel ?? "T3 Code",
+        projectTitle: props.environmentLabel ?? "PK Factory",
       });
     } finally {
       inFlightThreadIdsRef.current.delete(threadKey);
@@ -702,7 +702,7 @@ export const ThreadComposer = memo(function ThreadComposer(props: ThreadComposer
                 ))}
                 {props.draftAttachments.length > 3 ? (
                   <View className="size-[30px] items-center justify-center rounded-lg bg-subtle-strong">
-                    <Text className="text-foreground-muted text-2xs font-t3-bold">
+                    <Text className="text-foreground-muted text-2xs font-pkfactory-bold">
                       +{props.draftAttachments.length - 3}
                     </Text>
                   </View>

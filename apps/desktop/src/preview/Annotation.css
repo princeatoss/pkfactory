@@ -1,55 +1,55 @@
 @import "tailwindcss";
 
 @theme inline {
-  --font-sans: var(--t3-font-sans);
-  --font-mono: var(--t3-font-mono);
-  --color-background: var(--t3-background);
-  --color-foreground: var(--t3-foreground);
-  --color-popover: var(--t3-popover);
-  --color-popover-foreground: var(--t3-popover-foreground);
-  --color-primary: var(--t3-primary);
-  --color-primary-foreground: var(--t3-primary-foreground);
-  --color-muted: var(--t3-muted);
-  --color-muted-foreground: var(--t3-muted-foreground);
-  --color-accent: var(--t3-accent);
-  --color-accent-foreground: var(--t3-accent-foreground);
-  --color-border: var(--t3-border);
-  --color-input: var(--t3-input);
-  --color-ring: var(--t3-ring);
-  --radius-sm: calc(var(--t3-radius) - 4px);
-  --radius-md: calc(var(--t3-radius) - 2px);
-  --radius-lg: var(--t3-radius);
-  --radius-xl: calc(var(--t3-radius) + 4px);
-  --radius-2xl: calc(var(--t3-radius) + 8px);
+  --font-sans: var(--pkfactory-font-sans);
+  --font-mono: var(--pkfactory-font-mono);
+  --color-background: var(--pkfactory-background);
+  --color-foreground: var(--pkfactory-foreground);
+  --color-popover: var(--pkfactory-popover);
+  --color-popover-foreground: var(--pkfactory-popover-foreground);
+  --color-primary: var(--pkfactory-primary);
+  --color-primary-foreground: var(--pkfactory-primary-foreground);
+  --color-muted: var(--pkfactory-muted);
+  --color-muted-foreground: var(--pkfactory-muted-foreground);
+  --color-accent: var(--pkfactory-accent);
+  --color-accent-foreground: var(--pkfactory-accent-foreground);
+  --color-border: var(--pkfactory-border);
+  --color-input: var(--pkfactory-input);
+  --color-ring: var(--pkfactory-ring);
+  --radius-sm: calc(var(--pkfactory-radius) - 4px);
+  --radius-md: calc(var(--pkfactory-radius) - 2px);
+  --radius-lg: var(--pkfactory-radius);
+  --radius-xl: calc(var(--pkfactory-radius) + 4px);
+  --radius-2xl: calc(var(--pkfactory-radius) + 8px);
 }
 
 :host {
-  --t3-font-sans:
+  --pkfactory-font-sans:
     "DM Sans Variable", "DM Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui,
     sans-serif;
-  --t3-font-mono:
+  --pkfactory-font-mono:
     "SF Mono", "SFMono-Regular", "JetBrains Mono", Consolas, "Liberation Mono", Menlo, monospace;
-  --t3-radius: 0.625rem;
-  --t3-background: white;
-  --t3-foreground: oklch(0.269 0 0);
-  --t3-popover: white;
-  --t3-popover-foreground: oklch(0.269 0 0);
-  --t3-primary: oklch(0.488 0.217 264);
-  --t3-primary-foreground: white;
-  --t3-muted: rgb(0 0 0 / 4%);
-  --t3-muted-foreground: oklch(0.556 0 0);
-  --t3-accent: rgb(0 0 0 / 4%);
-  --t3-accent-foreground: oklch(0.269 0 0);
-  --t3-border: rgb(0 0 0 / 8%);
-  --t3-input: rgb(0 0 0 / 10%);
-  --t3-ring: oklch(0.488 0.217 264);
-  color: var(--t3-foreground);
-  font-family: var(--t3-font-sans);
+  --pkfactory-radius: 0.625rem;
+  --pkfactory-background: white;
+  --pkfactory-foreground: oklch(0.269 0 0);
+  --pkfactory-popover: white;
+  --pkfactory-popover-foreground: oklch(0.269 0 0);
+  --pkfactory-primary: oklch(0.488 0.217 264);
+  --pkfactory-primary-foreground: white;
+  --pkfactory-muted: rgb(0 0 0 / 4%);
+  --pkfactory-muted-foreground: oklch(0.556 0 0);
+  --pkfactory-accent: rgb(0 0 0 / 4%);
+  --pkfactory-accent-foreground: oklch(0.269 0 0);
+  --pkfactory-border: rgb(0 0 0 / 8%);
+  --pkfactory-input: rgb(0 0 0 / 10%);
+  --pkfactory-ring: oklch(0.488 0.217 264);
+  color: var(--pkfactory-foreground);
+  font-family: var(--pkfactory-font-sans);
 }
 
 * {
   box-sizing: border-box;
-  border-color: var(--t3-border);
+  border-color: var(--pkfactory-border);
 }
 
 button,
@@ -63,6 +63,6 @@ button:focus-visible,
 input:focus-visible,
 select:focus-visible,
 textarea:focus-visible {
-  outline: 2px solid color-mix(in srgb, var(--t3-ring) 72%, transparent);
+  outline: 2px solid color-mix(in srgb, var(--pkfactory-ring) 72%, transparent);
   outline-offset: 1px;
 }

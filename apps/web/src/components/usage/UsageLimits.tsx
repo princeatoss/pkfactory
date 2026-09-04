@@ -8,7 +8,7 @@ import {
   UsageLimitSourceAccount,
   UsageLimitSourceSnapshot,
   UsageProviderKind,
-} from "@t3tools/contracts";
+} from "@pkfactory/contracts";
 import { useAtomValue } from "@effect/atom-react";
 import {
   collectLimitSources,
@@ -20,7 +20,7 @@ import {
   type LimitPace,
   paceOf,
   providerLimitsLabel,
-} from "@t3tools/shared/usageLimits";
+} from "@pkfactory/shared/usageLimits";
 import { GaugeIcon, TrendingDownIcon, TrendingUpIcon } from "lucide-react";
 import { Fragment, useState } from "react";
 

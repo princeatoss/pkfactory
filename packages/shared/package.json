@@ -1,5 +1,5 @@
 {
-  "name": "@t3tools/shared",
+  "name": "@pkfactory/shared",
   "private": true,
   "type": "module",
   "exports": {
@@ -107,9 +107,9 @@
       "types": "./src/threadEnvMode.ts",
       "import": "./src/threadEnvMode.ts"
     },
-    "./t3ProjectFile": {
-      "types": "./src/t3ProjectFile.ts",
-      "import": "./src/t3ProjectFile.ts"
+    "./pkfactoryProjectFile": {
+      "types": "./src/pkfactoryProjectFile.ts",
+      "import": "./src/pkfactoryProjectFile.ts"
     },
     "./orchestrationTiming": {
       "types": "./src/orchestrationTiming.ts",
@@ -267,7 +267,7 @@
   "dependencies": {
     "@noble/curves": "catalog:",
     "@noble/hashes": "catalog:",
-    "@t3tools/contracts": "workspace:*",
+    "@pkfactory/contracts": "workspace:*",
     "effect": "catalog:",
     "jose": "catalog:",
     "yaml": "catalog:"

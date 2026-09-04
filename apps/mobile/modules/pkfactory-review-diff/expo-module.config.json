@@ -1,0 +1,10 @@
+{
+  "platforms": ["apple", "android"],
+  "apple": {
+    "modules": ["PKFactoryReviewDiffModule"],
+    "podspecPath": "PKFactoryReviewDiffNative.podspec"
+  },
+  "android": {
+    "modules": ["expo.modules.pkfactoryreviewdiff.PKFactoryReviewDiffModule"]
+  }
+}

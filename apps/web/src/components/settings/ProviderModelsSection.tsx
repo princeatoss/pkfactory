@@ -6,8 +6,8 @@ import {
   ProviderDriverKind,
   type ProviderInstanceId,
   type ServerProviderModel,
-} from "@t3tools/contracts";
-import { normalizeCustomModelSlug } from "@t3tools/shared/model";
+} from "@pkfactory/contracts";
+import { normalizeCustomModelSlug } from "@pkfactory/shared/model";
 
 import { cn } from "../../lib/utils";
 import { sortModelsForProviderInstance } from "../../modelOrdering";

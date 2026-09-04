@@ -158,7 +158,7 @@ describe("searchSettings", () => {
       "provider-health-check-interval",
       "source-control-writer-model",
       "source-control-writing-style",
-      "t3-connect",
+      "pkfactory-connect",
       "tailscale-https",
       "wsl-backend",
       "auto-settle-inactive-threads",

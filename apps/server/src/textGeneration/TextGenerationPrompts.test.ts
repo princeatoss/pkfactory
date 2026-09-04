@@ -7,7 +7,7 @@ import {
   buildThreadTitlePrompt,
 } from "./TextGenerationPrompts.ts";
 import { normalizeCliError, sanitizeThreadTitle } from "./TextGenerationUtils.ts";
-import { TextGenerationError } from "@t3tools/contracts";
+import { TextGenerationError } from "@pkfactory/contracts";
 
 describe("buildCommitMessagePrompt", () => {
   it("includes staged patch and summary in the prompt", () => {
@@ -155,7 +155,7 @@ describe("buildThreadTitlePrompt", () => {
     expect(result.prompt).toContain("Investigate reconnect regressions after session restore");
     expect(result.prompt).not.toContain("Attachment metadata:");
     expect(result.prompt).toContain(
-      "Generate a title that will help the user recognize this T3 Code thread weeks later.",
+      "Generate a title that will help the user recognize this PK Factory thread weeks later.",
     );
     expect(result.prompt).toContain(
       "Title the subject and outcome. Discard incidental instructions.",
@@ -195,7 +195,7 @@ describe("buildThreadTitlePrompt", () => {
     "tells the $mode prompt not to title linked PRs from local git history",
     ({ previousTitle }) => {
       const result = buildThreadTitlePrompt({
-        message: "$takeover https://github.com/pingdotgg/t3code/pull/8588",
+        message: "$takeover https://github.com/princeatoss/pkfactory/pull/8588",
         ...(previousTitle === undefined ? {} : { previousTitle }),
       });
 
@@ -213,7 +213,7 @@ describe("buildThreadTitlePrompt", () => {
     });
 
     expect(result.prompt).toContain(
-      "Regenerate the title for an existing T3 Code thread so the user can recognize it weeks later.",
+      "Regenerate the title for an existing PK Factory thread so the user can recognize it weeks later.",
     );
     expect(result.prompt).toContain('The previous title was "Investigate reconnect regressions".');
     expect(result.prompt).toContain(

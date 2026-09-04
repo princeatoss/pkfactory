@@ -4,8 +4,8 @@ import type {
   PreviewSessionSnapshot,
   PreviewViewportSetting,
   ScopedThreadRef,
-} from "@t3tools/contracts";
-import type { AtomCommandResult } from "@t3tools/client-runtime/state/runtime";
+} from "@pkfactory/contracts";
+import type { AtomCommandResult } from "@pkfactory/client-runtime/state/runtime";
 
 import {
   browserDefaultOpenProfileId,

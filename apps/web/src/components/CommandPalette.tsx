@@ -4,7 +4,7 @@ import {
   scopedThreadKey,
   scopeProjectRef,
   scopeThreadRef,
-} from "@t3tools/client-runtime/environment";
+} from "@pkfactory/client-runtime/environment";
 import {
   canCreateProjectInEnvironment,
   getCloneDestinationBrowsePath,
@@ -12,21 +12,21 @@ import {
   getCloneDirectoryName,
   getDefaultCloneUrl,
   normalizePastedCloneUrl,
-} from "@t3tools/client-runtime/operations/projects";
-import { connectionStatusText } from "@t3tools/client-runtime/connection";
-import { threadSearchMatchKey } from "@t3tools/client-runtime/state/thread-search";
-import { resolveThreadReferenceCopyTarget } from "@t3tools/shared/threadReference";
+} from "@pkfactory/client-runtime/operations/projects";
+import { connectionStatusText } from "@pkfactory/client-runtime/connection";
+import { threadSearchMatchKey } from "@pkfactory/client-runtime/state/thread-search";
+import { resolveThreadReferenceCopyTarget } from "@pkfactory/shared/threadReference";
 import {
   canPreloadBrowsePath,
   createBrowseNavigationCoordinator,
   filterFilesystemBrowseEntries,
   getFilesystemBrowsePath,
-} from "@t3tools/client-runtime/state/filesystem";
+} from "@pkfactory/client-runtime/state/filesystem";
 import {
   isAtomCommandInterrupted,
   settlePromise,
   squashAtomCommandFailure,
-} from "@t3tools/client-runtime/state/runtime";
+} from "@pkfactory/client-runtime/state/runtime";
 import {
   type DesktopWslState,
   type EnvironmentId,
@@ -38,13 +38,14 @@ import {
   type SourceControlRepositoryInfo,
   PRIMARY_LOCAL_ENVIRONMENT_ID,
   resolveEnvironmentMachineKind,
-} from "@t3tools/contracts";
+} from "@pkfactory/contracts";
 import { useLocation, useNavigate, useParams } from "@tanstack/react-router";
 import * as Option from "effect/Option";
 import {
   ArrowLeftIcon,
   CornerLeftUpIcon,
   FileSearchIcon,
+  FileCode2Icon,
   FolderIcon,
   FolderPlusIcon,
   LinkIcon,
@@ -1730,6 +1731,18 @@ function OpenCommandPaletteDialog(props: {
     },
   });
 
+  actionItems.push({
+    kind: "action",
+    value: "action:workflows",
+    searchTerms: ["workflows", "automation", "yaml", "schedule", "agent"],
+    title: "Open workflows",
+    description: "Edit project workflow YAML",
+    icon: <FileCode2Icon className={ITEM_ICON_CLASS} />,
+    run: async () => {
+      await navigate({ to: "/workflows" });
+    },
+  });
+
   // There is no projects listing page; the action targets the contextual
   // project (active thread/draft, falling back to the first sidebar group).
   const contextualProjectGroup =
@@ -1755,7 +1768,7 @@ function OpenCommandPaletteDialog(props: {
         "grouping",
         "checkout",
         "remove",
-        "t3.json",
+        "pkfactory.json",
       ],
       title: "Project settings",
       description: contextualProjectGroup.displayName,

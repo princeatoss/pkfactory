@@ -48,14 +48,14 @@ import {
 } from "./settingsSearch";
 import { useAvailableSettingsSearchItems } from "./useAvailableSettingsSearchItems";
 
-const T3ConnectSidebarSignIn = lazy(() =>
-  import("../clerk/T3ConnectSidebarSignIn").then((module) => ({
-    default: module.T3ConnectSidebarSignIn,
+const PKFactoryConnectSidebarSignIn = lazy(() =>
+  import("../clerk/PKFactoryConnectSidebarSignIn").then((module) => ({
+    default: module.PKFactoryConnectSidebarSignIn,
   })),
 );
-const T3ConnectSidebarAvatar = lazy(() =>
-  import("../clerk/T3ConnectSidebarSignIn").then((module) => ({
-    default: module.T3ConnectSidebarAvatar,
+const PKFactoryConnectSidebarAvatar = lazy(() =>
+  import("../clerk/PKFactoryConnectSidebarSignIn").then((module) => ({
+    default: module.PKFactoryConnectSidebarAvatar,
   })),
 );
 
@@ -383,14 +383,14 @@ export function SettingsSidebarNav({ pathname }: { pathname: string }) {
       </SidebarContent>
       <SidebarFooter className="p-[var(--sidebar-content-inset)]">
         <Suspense fallback={null}>
-          <T3ConnectSidebarSignIn />
+          <PKFactoryConnectSidebarSignIn />
         </Suspense>
         <div className="flex items-center gap-1">
           <div className="min-w-0 flex-1">
             <SidebarUtilityMenu />
           </div>
           <Suspense fallback={null}>
-            <T3ConnectSidebarAvatar />
+            <PKFactoryConnectSidebarAvatar />
           </Suspense>
         </div>
       </SidebarFooter>

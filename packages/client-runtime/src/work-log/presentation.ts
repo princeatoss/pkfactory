@@ -4,10 +4,10 @@ import {
   type ThreadId,
   type ToolActivitySource,
   type ToolLifecycleItemType,
-} from "@t3tools/contracts";
-import { classifyMarkdownImageSource } from "@t3tools/client-runtime/markdown-images";
-import { resolveMediaSource } from "@t3tools/client-runtime/media-source";
-import { isWorkspaceImagePreviewPath } from "@t3tools/shared/filePreview";
+} from "@pkfactory/contracts";
+import { classifyMarkdownImageSource } from "@pkfactory/client-runtime/markdown-images";
+import { resolveMediaSource } from "@pkfactory/client-runtime/media-source";
+import { isWorkspaceImagePreviewPath } from "@pkfactory/shared/filePreview";
 
 export function isWorktreeSetupActivity(kind: string): boolean {
   return kind === "setup-script.requested" || kind === "setup-script.started";
@@ -53,7 +53,7 @@ export function normalizeCompactToolLabel(value: string): string {
   return value.replace(/\s+(?:complete|completed)\s*$/i, "").trim();
 }
 
-const T3_MCP_TOOL_LABELS: Record<
+const PKFACTORY_MCP_TOOL_LABELS: Record<
   string,
   readonly [action: string, running: string, completed: string, detail: string]
 > = {
@@ -65,15 +65,15 @@ const T3_MCP_TOOL_LABELS: Record<
   list_scheduled_tasks: ["List", "Listing", "Listed", "scheduled tasks"],
   update_scheduled_task: ["Update", "Updating", "Updated", "a scheduled task"],
   delete_scheduled_task: ["Delete", "Deleting", "Deleted", "a scheduled task"],
-  create_threads: ["Create", "Creating", "Created", "T3 threads"],
-  t3_thread_start: ["Start", "Starting", "Started", "a T3 thread"],
-  t3_thread_list: ["List", "Listing", "Listed", "T3 threads"],
-  t3_thread_read: ["Read", "Reading", "Read", "a T3 thread"],
-  t3_thread_send: ["Send", "Sending", "Sent", "to a T3 thread"],
-  t3_thread_wait: ["Wait", "Waiting", "Waited", "for a T3 thread"],
-  t3_thread_interrupt: ["Interrupt", "Interrupting", "Interrupted", "a T3 thread"],
-  t3_worktree_handoff: ["Hand off", "Handing off", "Handed off", "thread to a git worktree"],
-  t3_worktree_status: ["Get", "Getting", "Got", "thread worktree status"],
+  create_threads: ["Create", "Creating", "Created", "PK Factory threads"],
+  pkfactory_thread_start: ["Start", "Starting", "Started", "a PK Factory thread"],
+  pkfactory_thread_list: ["List", "Listing", "Listed", "PK Factory threads"],
+  pkfactory_thread_read: ["Read", "Reading", "Read", "a PK Factory thread"],
+  pkfactory_thread_send: ["Send", "Sending", "Sent", "to a PK Factory thread"],
+  pkfactory_thread_wait: ["Wait", "Waiting", "Waited", "for a PK Factory thread"],
+  pkfactory_thread_interrupt: ["Interrupt", "Interrupting", "Interrupted", "a PK Factory thread"],
+  pkfactory_worktree_handoff: ["Hand off", "Handing off", "Handed off", "thread to a git worktree"],
+  pkfactory_worktree_status: ["Get", "Getting", "Got", "thread worktree status"],
   preview_status: ["Get", "Getting", "Got", "preview browser status"],
   preview_open: ["Open", "Opening", "Opened", "a page in the preview browser"],
   preview_navigate: ["Navigate", "Navigating", "Navigated", "the preview browser"],
@@ -95,15 +95,18 @@ const T3_MCP_TOOL_LABELS: Record<
   preview_recording_stop: ["Stop", "Stopping", "Stopped", "recording the preview browser"],
 };
 
-function resolveT3McpToolPresentation(value: string | undefined, status: string | undefined) {
+function resolvePKFactoryMcpToolPresentation(
+  value: string | undefined,
+  status: string | undefined,
+) {
   if (!value) return null;
   const name = normalizeCompactToolLabel(value).replace(
-    /^(?:mcp__(?:t3-code|t3_code|t3code)__|(?:t3-code|t3_code|t3code)(?:[.:/]|\s*·\s*))/i,
+    /^(?:mcp__(?:pkfactory|pkfactory_code|pkfactory)__|(?:pkfactory|pkfactory_code|pkfactory)(?:[.:/]|\s*·\s*))/i,
     "",
   );
-  if (!Object.hasOwn(T3_MCP_TOOL_LABELS, name)) return null;
+  if (!Object.hasOwn(PKFACTORY_MCP_TOOL_LABELS, name)) return null;
 
-  const [action, running, completed, detail] = T3_MCP_TOOL_LABELS[name]!;
+  const [action, running, completed, detail] = PKFACTORY_MCP_TOOL_LABELS[name]!;
   const verb =
     status === "inProgress"
       ? running
@@ -119,7 +122,7 @@ function resolveT3McpToolPresentation(value: string | undefined, status: string 
 
   return {
     displayName: `${verb} ${detail}`,
-    icon: name.startsWith("preview_") ? ("browser" as const) : ("t3-code" as const),
+    icon: name.startsWith("preview_") ? ("browser" as const) : ("pkfactory" as const),
   };
 }
 
@@ -144,16 +147,16 @@ export function resolveWorkEntryToolPresentation(
       "tool" in data &&
       typeof data.tool === "string"
     ) {
-      return resolveT3McpToolPresentation(`${data.server}.${data.tool}`, status);
+      return resolvePKFactoryMcpToolPresentation(`${data.server}.${data.tool}`, status);
     }
     if ("toolName" in data && typeof data.toolName === "string") {
-      return resolveT3McpToolPresentation(data.toolName, status);
+      return resolvePKFactoryMcpToolPresentation(data.toolName, status);
     }
   }
 
   return (
-    resolveT3McpToolPresentation(entry.toolTitle, status) ??
-    resolveT3McpToolPresentation(entry.label, status)
+    resolvePKFactoryMcpToolPresentation(entry.toolTitle, status) ??
+    resolvePKFactoryMcpToolPresentation(entry.label, status)
   );
 }
 

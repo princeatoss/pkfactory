@@ -2,8 +2,8 @@ import {
   DEFAULT_SERVER_SETTINGS,
   ProviderDriverKind,
   ProviderInstanceId,
-} from "@t3tools/contracts";
-import { DEFAULT_CLIENT_SETTINGS } from "@t3tools/contracts/settings";
+} from "@pkfactory/contracts";
+import { DEFAULT_CLIENT_SETTINGS } from "@pkfactory/contracts/settings";
 import { beforeEach, describe, expect, it, vi } from "vite-plus/test";
 
 import {

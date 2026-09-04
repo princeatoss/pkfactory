@@ -1,0 +1,4 @@
+interface:
+  display_name: "Test PK Factory Mobile"
+  short_description: "Test PK Factory on iOS or Android"
+  default_prompt: "Use $test-pkfactory-mobile to launch PK Factory against an isolated backend and verify the affected flow on an available simulator or emulator."

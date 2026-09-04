@@ -1,0 +1,4 @@
+interface:
+  display_name: "PK Factory App Testing"
+  short_description: "Launch and retain isolated PK Factory test environments"
+  default_prompt: "Use $test-pkfactory-app to launch an isolated PK Factory environment and iteratively test it in the browser while preserving state."

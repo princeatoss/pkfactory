@@ -1,5 +1,5 @@
-import type { AssetResource, ThreadId } from "@t3tools/contracts";
-import { mediaMimeType, mediaMimeTypeFromExtension } from "@t3tools/shared/filePreview";
+import type { AssetResource, ThreadId } from "@pkfactory/contracts";
+import { mediaMimeType, mediaMimeTypeFromExtension } from "@pkfactory/shared/filePreview";
 
 import {
   classifyMarkdownImageSource,

@@ -1,7 +1,7 @@
 # Codex
 
-This guide is for people who want to use more than one Codex account in T3 Code. For Claude, see
-[Claude](./providers-claude.md). For first-time setup, see [Install T3 Code](./install.md).
+This guide is for people who want to use more than one Codex account in PK Factory. For Claude, see
+[Claude](./providers-claude.md). For first-time setup, see [Install PK Factory](./install.md).
 
 Common reasons:
 
@@ -31,7 +31,7 @@ codex login
 ## Send feedback to OpenAI
 
 In an existing Codex thread, send `/feedback` or `/feedback` followed by a description of the
-issue. T3 Code uploads the thread and Codex logs to OpenAI and shows a thread ID that you can copy
+issue. PK Factory uploads the thread and Codex logs to OpenAI and shows a thread ID that you can copy
 and share with OpenAI employees.
 
 ## Answer questions while Codex works
@@ -46,7 +46,7 @@ This works in the web, desktop, and mobile apps. Codex must support async questi
 ## Sub-agent models
 
 The web and desktop Agents panel shows each sub-agent's model and reasoning effort when Codex
-reports them. If Codex does not report either value, T3 Code leaves it out instead of using the
+reports them. If Codex does not report either value, PK Factory leaves it out instead of using the
 parent agent's settings.
 
 ## Browser and computer activity
@@ -62,7 +62,7 @@ integrations that provide separate light and dark logos use the logo for the cur
 
 ## Approve access to other apps
 
-When a Codex tool needs access to an app such as Safari, T3 Code shows the app name and asks for
+When a Codex tool needs access to an app such as Safari, PK Factory shows the app name and asks for
 approval. You can approve, decline, or cancel the request from the desktop app, web app, or mobile
 app. Some tools also offer approval for the current session or permanent approval.
 
@@ -79,7 +79,7 @@ Recommended setup:
 
 The idea is:
 
-- both accounts can see the same T3/Codex sessions
+- both accounts can see the same PK Factory/Codex sessions
 - each account keeps its own login
 - existing threads can continue with either account
 
@@ -93,7 +93,7 @@ codex login
 
 This is the account used by `~/.codex`.
 
-In T3 Code Settings, name it something obvious:
+In PK Factory Settings, name it something obvious:
 
 ```text
 Display name: Codex Work
@@ -110,7 +110,7 @@ mkdir -p ~/.codex_p
 CODEX_HOME=~/.codex_p codex login
 ```
 
-In T3 Code Settings, add another Codex provider:
+In PK Factory Settings, add another Codex provider:
 
 ```text
 Display name: Codex Personal
@@ -125,7 +125,7 @@ has a `Shadow home path`.
 
 Open Settings and look at the provider row.
 
-T3 Code shows the authenticated email for providers that report one. Emails are blurred by default;
+PK Factory shows the authenticated email for providers that report one. Emails are blurred by default;
 click the blurred email to reveal it.
 
 Use display names and accent colors to make accounts easy to tell apart in the model picker.
@@ -152,7 +152,7 @@ Codex Personal  CODEX_HOME path: ~/.codex, Shadow home path: ~/.codex_p
 Those two providers are considered compatible for continuation, so the locked model picker can show
 both.
 
-If you add a third Codex provider with a completely different `CODEX_HOME path`, T3 Code treats it
+If you add a third Codex provider with a completely different `CODEX_HOME path`, PK Factory treats it
 as a different workspace. It will not be offered for existing threads created under `~/.codex`.
 
 ## If Both Accounts Look The Same

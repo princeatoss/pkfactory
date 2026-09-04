@@ -7,7 +7,7 @@ Long groups scroll inside a bounded area without expanding the whole conversatio
 indicate more calls above or below. Short groups use only the space they need.
 Collapsing and reopening a group preserves your reading position and any open call details.
 
-Recognized T3 tools use descriptive labels in both the running summary and individual rows.
+Recognized PK Factory tools use descriptive labels in both the running summary and individual rows.
 The latest live activity stays in the present tense while the turn continues, such as
 "Running vp" or "Clicking in the preview browser", even after that call has completed.
 Expanded rows follow the call's own state, such as "Clicked" after success.
@@ -17,7 +17,7 @@ Failed calls keep their tool icon with a muted red tint, so a failed command sti
 looks like a command. App logos and other multicolor icons keep their artwork and
 show a small muted red failure mark beside the row. Expand the call to inspect its
 output. Runtime errors and warnings keep their stronger styling.
-Preview browser actions use a globe icon. Other T3 tools keep the T3 mark.
+Preview browser actions use a globe icon. Other PK Factory tools keep the PK Factory mark.
 Group summaries count browser actions separately, such as "Used browser 18 times" or
 "Ran 4 commands and used browser 15 times". Browser-only groups also use a globe icon.
 

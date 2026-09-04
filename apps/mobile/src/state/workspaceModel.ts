@@ -1,7 +1,7 @@
-import { type EnvironmentShellSummary } from "@t3tools/client-runtime/state/shell";
-import { type NetworkStatus } from "@t3tools/client-runtime/connection";
-import { type EnvironmentConnectionPhase } from "@t3tools/client-runtime/connection";
-import type { EnvironmentId, ServerConfig } from "@t3tools/contracts";
+import { type EnvironmentShellSummary } from "@pkfactory/client-runtime/state/shell";
+import { type NetworkStatus } from "@pkfactory/client-runtime/connection";
+import { type EnvironmentConnectionPhase } from "@pkfactory/client-runtime/connection";
+import type { EnvironmentId, ServerConfig } from "@pkfactory/contracts";
 
 import type { EnvironmentPresentation } from "./environments";
 
